@@ -29,9 +29,8 @@ fi
 mkdir /home/$USERNAME/$REPONAME".git"
 cd /home/$USERNAME/$REPONAME".git"
 git --bare init
-chown $USERNAME .
-chown $USERNAME *
-chgrp $USERNAME .
-chgrp $USERNAME *
+cd ..
+chown $USERNAME -R $REPONAME".git"
+chgrp $USERNAME -R $REPONAME".git"
 
 "

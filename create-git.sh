@@ -1,32 +1,37 @@
+#!/bin/bash
+
 echo "Enter the Server:"
-read server
+read SERVER
 echo "Enter your User:"
-read userlogin
-
-ssh $userlogin@$server << EOF
-
+read USERLOGIN
 echo "Enter the user:"
-read username
+read USERNAME
 echo "Enter the name for the repository:"
-read reponame
-echo "Your input was $username and $reponame. Is this correct? (y/n)"
-read userinput
+read REPONAME
 
 while true; do
-  echo "Your input was $username and $reponame. Is this correct? (y/n)"
-  read userinput
-  case userinput in
+  echo "Your input was $USERNAME and $REPONAME. Is this correct? (y/n)"
+  read USERINPUT
+  case $USERINPUT in
     [Yy]*) break;;
     [Nn]*) exit;;
     *) "Please answer yes or no.";;
   esac
 done
 
-if [! -d "$DIRECTORY"]; then
-  adduser $username
+ssh $USERLOGIN@$SERVER bash -c "
 
-mkdir /home/$username/$reponame".git"
-cd /home/$username/$reponame".git"
+if [!-d "/home/$USERNAME"]; then
+  "first create the user with git-setup.sh!"
+  exit
+fi
+
+mkdir /home/$USERNAME/$REPONAME".git"
+cd /home/$USERNAME/$REPONAME".git"
 git --bare init
+chown $USERNAME .
+chown $USERNAME *
+chgrp $USERNAME .
+chgrp $USERNAME *
 
-EOF
+"

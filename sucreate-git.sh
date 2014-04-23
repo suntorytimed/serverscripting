@@ -2,7 +2,7 @@
 
 echo "Enter the Server:"
 read SERVER
-echo "Enter your root-username:"
+echo "Enter your sudo-username:"
 read USERLOGIN
 echo "Enter the username of the repository owner:"
 read USERNAME
@@ -30,7 +30,7 @@ ssh $USERLOGIN@$SERVER bash -c "
   cd /home/$USERNAME/$REPONAME".git"
   git --bare init
   cd ..
-  chown $USERNAME -R $REPONAME".git"
-  chgrp $USERNAME -R $REPONAME".git"
+  sudo chown $USERNAME -R $REPONAME".git"
+  sudo chgrp $USERNAME -R $REPONAME".git"
 
 "

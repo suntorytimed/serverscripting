@@ -7,9 +7,19 @@ read USERLOGIN
 echo "New Usergroup:"
 read USERGROUP
 
+while true; do
+  echo "Create new git user: $USERGROUP. Continue? (y/n)"
+  read USERINPUT
+  case $USERINPUT in
+    [Yy]*) break;;
+    [Nn]*) exit;;
+    *) "Please answer yes or no.";;
+  esac
+done
+
 ssh $USERLOGIN@$SERVER bash -c "
 
-  adduser $USERGROUP
+  sudo adduser $USERGROUP
   su $USERGROUP
   cd
   mkdir ~/.ssh
@@ -28,6 +38,6 @@ esac
 
 ssh $USERLOGIN@$SERVER bash -c "
 
-usermod -s /usr/bin/git-shell $USERGROUP
+  sudo usermod -s /usr/bin/git-shell $USERGROUP
 
 "

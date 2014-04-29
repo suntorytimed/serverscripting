@@ -10,7 +10,7 @@ echo "Enter the name for the repository:"
 read REPONAME
 
 while true; do
-  echo "Your input was $USERNAME and $REPONAME. Is this correct? (y/n)"
+  echo "Create new git repo $REPONAME for user $USERNAME. Continue? (y/n)"
   read USERINPUT
   case $USERINPUT in
     [Yy]*) break;;
